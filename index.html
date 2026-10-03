@@ -614,14 +614,15 @@
             if (ex.type === 'choose') {
                 html += `<div class="options" data-exid="${exId}">`;
                 ex.options.forEach(opt => {
-                    html += `<button class="opt-btn" data-answer="${opt}" onclick="checkChoose(this, '${ex.correct}', '${ex.feedback}', '${exId}')">${opt}</button>`;
+                    // Передаем только exId. Все данные (ответ, подсказка) берутся из массива topics при клике.
+                    html += `<button class="opt-btn" data-answer="${opt}" onclick="checkChoose(this, '${exId}')">${opt}</button>`;
                 });
                 html += `</div>`;
                 html += `<div id="fb-${exId}" class="feedback-text" style="display:none;"></div>`;
             } else if (ex.type === 'fill') {
                 html += `<div class="flex-row">`;
                 html += `<input class="fill-input" id="input-${exId}" placeholder="type answer..." />`;
-                html += `<button class="btn-check" onclick="checkFill('${exId}', '${ex.correct}', '${ex.feedback}')">Check ✅</button>`;
+                html += `<button class="btn-check" onclick="checkFill('${exId}')">Check ✅</button>`;
                 html += `</div>`;
                 html += `<div id="fb-${exId}" class="feedback-text" style="display:none;"></div>`;
             }
@@ -647,7 +648,15 @@
     // --------------------------------------------------------------
     //  ПРОВЕРКА ОТВЕТОВ
     // --------------------------------------------------------------
-    function checkChoose(btn, correct, feedbackText, exId) {
+    function checkChoose(btn, exId) {
+        // Достаём данные из массива topics по ID: ex-{topicIndex}-{exerciseIndex}
+        const parts = exId.split('-');
+        const tIdx = parseInt(parts[1], 10);
+        const eIdx = parseInt(parts[2], 10);
+        const ex = topics[tIdx].exercises[eIdx];
+        const correct = ex.correct;
+        const feedbackText = ex.feedback;
+
         const parentOptions = btn.closest('.options');
         const allBtns = parentOptions.querySelectorAll('.opt-btn');
         allBtns.forEach(b => b.disabled = true);
@@ -670,7 +679,15 @@
         registerAnswer(isCorrect);
     }
 
-    function checkFill(exId, correctAnswer, feedbackText) {
+    function checkFill(exId) {
+        // Достаём данные из массива topics по ID
+        const parts = exId.split('-');
+        const tIdx = parseInt(parts[1], 10);
+        const eIdx = parseInt(parts[2], 10);
+        const ex = topics[tIdx].exercises[eIdx];
+        const correctAnswer = ex.correct;
+        const feedbackText = ex.feedback;
+
         const input = document.getElementById(`input-${exId}`);
         const fb = document.getElementById(`fb-${exId}`);
         if (!input) return;
