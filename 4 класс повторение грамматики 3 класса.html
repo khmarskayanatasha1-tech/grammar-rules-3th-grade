@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grammar Adventure 🌟 3rd grade review</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+        background: linear-gradient(145deg, #fde9e0 0%, #fff3d6 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .app {
+        max-width: 800px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        border-radius: 70px 70px 40px 40px;
+        padding: 25px 25px 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border: 3px solid #ffeac0;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        color: #3f2b1c;
+        text-align: center;
+        margin-bottom: 8px;
+        letter-spacing: 2px;
+        text-shadow: 4px 4px 0 #fbcb8b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .progress {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #6b4a2d;
+        background: #f5e3d0;
+        border-radius: 60px;
+        padding: 8px 20px;
+        display: inline-block;
+        margin: 0 auto 20px;
+        box-shadow: inset 0 -3px 0 #d6b89b;
+    }
+
+    .topic-card {
+        background: #fcf6ed;
+        border-radius: 50px;
+        padding: 25px 22px 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 0 #dac09a, 0 12px 20px rgba(0, 0, 0, 0.1);
+        border: 2px solid #f3dcc2;
+    }
+
+    .topic-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #3f2b1c;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .rule-box {
+        background: #e7f0ea;
+        padding: 16px 20px;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        color: #1f3a3a;
+        border-left: 8px solid #5b9b8b;
+        line-height: 1.6;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .rule-box strong { color: #1f6f5c; }
+
+    .exercise {
+        background: white;
+        border-radius: 30px;
+        padding: 18px 20px 22px;
+        margin-top: 18px;
+        box-shadow: 0 4px 0 #cfb79b;
+        border: 2px solid #e7d5be;
+    }
+
+    .exercise-title {
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: #4f3a26;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exercise p {
+        font-size: 1.2rem;
+        margin: 8px 0 12px;
+        color: #2b4a3f;
+    }
+
+    .options { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+
+    .opt-btn {
+        background: #fcf3e8;
+        border: 3px solid #dac09a;
+        border-radius: 60px;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2f2a1f;
+        box-shadow: 0 5px 0 #b69d7e;
+        cursor: pointer;
+        transition: 0.07s ease;
+        font-family: inherit;
+        flex: 1 0 auto;
+        min-width: 100px;
+    }
+
+    .opt-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #b69d7e; }
+
+    .opt-btn.correct { background: #b3e0c0; border-color: #3c8d5e; box-shadow: 0 5px 0 #2f6e48; }
+
+    .opt-btn.wrong { background: #f8cfcf; border-color: #b34a4a; box-shadow: 0 5px 0 #8f3b3b; }
+
+    .opt-btn:disabled {
+        opacity: 0.7;
+        transform: translateY(4px);
+        box-shadow: 0 1px 0 #b69d7e;
+        pointer-events: none;
+    }
+
+    .feedback-text {
+        margin-top: 12px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 40px;
+        display: inline-block;
+    }
+
+    .fb-correct { background: #c7e6d0; color: #1d613a; }
+    .fb-wrong { background: #fcd1d1; color: #902b2b; }
+
+    .fill-input {
+        border: 3px solid #dac09a;
+        border-radius: 40px;
+        padding: 12px 20px;
+        font-size: 1.2rem;
+        font-family: inherit;
+        width: 200px;
+        max-width: 90%;
+        background: white;
+        outline: none;
+    }
+
+    .fill-input:focus { border-color: #8fb3a1; box-shadow: 0 0 0 3px #c7dfd3; }
+
+    .btn-check {
+        background: #ffb882;
+        border: none;
+        border-radius: 60px;
+        padding: 12px 28px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2f2a1f;
+        box-shadow: 0 6px 0 #be8a5f;
+        cursor: pointer;
+        transition: 0.07s;
+        font-family: inherit;
+        margin-left: 8px;
+    }
+
+    .btn-check:active { transform: translateY(4px); box-shadow: 0 2px 0 #be8a5f; }
+
+    .btn-check:disabled {
+        opacity: 0.5;
+        transform: translateY(4px);
+        box-shadow: 0 2px 0 #be8a5f;
+        pointer-events: none;
+    }
+
+    .flex-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+    .congrats {
+        text-align: center;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        color: #2d5f4b;
+        padding: 25px;
+        background: #e2f0d6;
+        border-radius: 60px;
+        border: 4px dashed #4b8b6e;
+    }
+
+    hr { border: 2px dashed #ddc6ac; margin: 30px 0 10px; }
+
+    .btn-restart {
+        background: #9fb7ad;
+        border: none;
+        border-radius: 60px;
+        padding: 14px 40px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1f3229;
+        box-shadow: 0 6px 0 #6d897b;
+        cursor: pointer;
+        transition: 0.07s;
+        margin: 10px auto 0;
+        display: block;
+        font-family: inherit;
+    }
+
+    .btn-restart:active { transform: translateY(4px); box-shadow: 0 2px 0 #6d897b; }
+
+    @media (max-width: 500px) {
+        h1 { font-size: 2rem; }
+        .topic-title { font-size: 1.6rem; }
+        .rule-box { font-size: 1rem; }
+        .opt-btn { font-size: 1rem; padding: 10px 16px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+    <h1>📚 Grammar <span style="color:#b87c4b;">Adventure</span></h1>
+    <div style="text-align:center;">
+        <span class="progress" id="progressDisplay">🌟 1 / 12</span>
+    </div>
+
+    <div id="topicsContainer"></div>
+
+    <hr>
+    <button class="btn-restart" onclick="restartAll()">🔄 Start Over</button>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    //  ДАННЫЕ: все темы + упражнения
+    // --------------------------------------------------------------
+    const topics = [
+
+        // 1. a / an
+        {
+            title: '🐊 a / an',
+            rule: 'a — перед согласным звуком: <strong>a crocodile</strong><br>an — перед гласным: <strong>an elephant</strong><br>Смотрим на следующее слово!',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: '____ animal',
+                    options: ['a', 'an'],
+                    correct: 'an',
+                    feedback: 'an animal — звук гласный!'
+                },
+                {
+                    type: 'choose',
+                    question: '____ happy elephant',
+                    options: ['a', 'an'],
+                    correct: 'a',
+                    feedback: 'a happy elephant — "happy" начинается с согласного 🐘'
+                },
+                {
+                    type: 'choose',
+                    question: '____ orange parrot',
+                    options: ['a', 'an'],
+                    correct: 'an',
+                    feedback: 'an orange parrot — orange начинается с гласного 🦜'
+                }
+            ]
+        },
+
+        // 2. Personal pronouns + he/she/it
+        {
+            title: '👤 Pronouns (I, you, he, she, it...)',
+            rule: 'he — мальчик/мужчина, she — девочка/женщина, it — животное или предмет.<br>Для питомцев тоже he/she!',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'My dog Max. ____ is funny.',
+                    options: ['He', 'She', 'It'],
+                    correct: 'He',
+                    feedback: 'Max — мальчик-пёс, значит he 🐕'
+                },
+                {
+                    type: 'choose',
+                    question: 'Masha has a cat. ____ name is Kitty.',
+                    options: ['His', 'Her', 'Its'],
+                    correct: 'Her',
+                    feedback: 'Masha — девочка, значит Her 😺'
+                },
+                {
+                    type: 'choose',
+                    question: 'Look at the tree. ____ is green.',
+                    options: ['He', 'She', 'It'],
+                    correct: 'It',
+                    feedback: 'Дерево — неодушевлённое, it 🌳'
+                }
+            ]
+        },
+
+        // 3. have got / has got
+        {
+            title: '🎒 have got / has got',
+            rule: 'have got — I, you, we, they<br>has got — he, she, it<br>Утверждение, вопрос, отрицание.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'She ____ a new pencil.',
+                    options: ['have got', 'has got'],
+                    correct: 'has got',
+                    feedback: 'She → has got ✏️'
+                },
+                {
+                    type: 'choose',
+                    question: '____ you got a brother?',
+                    options: ['Have', 'Has'],
+                    correct: 'Have',
+                    feedback: 'You → Have got ❓'
+                },
+                {
+                    type: 'choose',
+                    question: 'The cat ____ got a tail.',
+                    options: ['have', 'has'],
+                    correct: 'has',
+                    feedback: 'The cat → it → has got 🐈'
+                }
+            ]
+        },
+
+        // 4. Present continuous
+        {
+            title: '⚡ Present Continuous',
+            rule: 'am/is/are + глагол + ing<br>Сейчас происходит: I am reading. She is playing.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'They ____ jumping now.',
+                    options: ['am', 'is', 'are'],
+                    correct: 'are',
+                    feedback: 'They → are jumping 🏃'
+                },
+                {
+                    type: 'choose',
+                    question: 'He ____ riding a bike.',
+                    options: ['am', 'is', 'are'],
+                    correct: 'is',
+                    feedback: 'He → is riding 🚲'
+                },
+                {
+                    type: 'fill',
+                    question: 'I ____ (sit) on the chair.',
+                    correct: 'am sitting',
+                    feedback: 'I am sitting — удваиваем t + ing 🪑'
+                }
+            ]
+        },
+
+        // 5. Present simple
+        {
+            title: '📖 Present Simple (he/she/it + s)',
+            rule: 'He reads. She reads. It reads.<br>Исключения: has, goes.<br>В вопросах с does окончание -s убираем!',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'She ____ to school every day.',
+                    options: ['go', 'goes'],
+                    correct: 'goes',
+                    feedback: 'She → goes (исключение) 🏫'
+                },
+                {
+                    type: 'choose',
+                    question: 'Does he ____ English?',
+                    options: ['like', 'likes'],
+                    correct: 'like',
+                    feedback: 'Вопрос с does → глагол без -s ✅'
+                },
+                {
+                    type: 'choose',
+                    question: 'My sister ____ breakfast at 8.',
+                    options: ['has', 'have'],
+                    correct: 'has',
+                    feedback: 'She → has (исключение) 🍳'
+                }
+            ]
+        },
+
+        // 6. How old
+        {
+            title: '🎂 How old …?',
+            rule: 'How old are you? — I am eight.<br>How old is she? — She is eleven.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'How old ____ you?',
+                    options: ['am', 'is', 'are'],
+                    correct: 'are',
+                    feedback: 'How old are you? ✅'
+                },
+                {
+                    type: 'choose',
+                    question: 'How old ____ your brother?',
+                    options: ['am', 'is', 'are'],
+                    correct: 'is',
+                    feedback: 'Your brother → he → is 👦'
+                }
+            ]
+        },
+
+        // 7. because
+        {
+            title: '💡 because',
+            rule: 'because = потому что. Даём пояснение.<br>I like summer because I can swim.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'I like winter ____ I can ski.',
+                    options: ['but', 'because', 'and'],
+                    correct: 'because',
+                    feedback: 'because — причина ⛷️'
+                },
+                {
+                    type: 'fill',
+                    question: 'She is happy ____ it is her birthday.',
+                    correct: 'because',
+                    feedback: 'because — поясняем причину 🎉'
+                }
+            ]
+        },
+
+        // 8. This / That / These / Those
+        {
+            title: '👆 This / That / These / Those',
+            rule: 'this (рядом), that (далеко) — ед.ч.<br>these (рядом), those (далеко) — мн.ч.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: '____ is my pencil. (рядом)',
+                    options: ['This', 'That'],
+                    correct: 'This',
+                    feedback: 'Рядом → this ✏️'
+                },
+                {
+                    type: 'choose',
+                    question: '____ are Ivan\'s pencils. (далеко)',
+                    options: ['These', 'Those'],
+                    correct: 'Those',
+                    feedback: 'Далеко + мн.ч. → those 📏'
+                }
+            ]
+        },
+
+        // 9. Plural
+        {
+            title: '🔢 Plural (мн. число)',
+            rule: 'обычно +s: bee → bees<br>-y → -ies: baby → babies<br>искл: tooth → teeth, foot → feet',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'One baby → two ____',
+                    options: ['babys', 'babies'],
+                    correct: 'babies',
+                    feedback: '-y → -ies 👶'
+                },
+                {
+                    type: 'choose',
+                    question: 'One tooth → two ____',
+                    options: ['teeth', 'tooths'],
+                    correct: 'teeth',
+                    feedback: 'исключение: tooth → teeth 🦷'
+                },
+                {
+                    type: 'choose',
+                    question: 'One shelf → three ____',
+                    options: ['shelfs', 'shelves'],
+                    correct: 'shelves',
+                    feedback: '-f → -ves 📚'
+                }
+            ]
+        },
+
+        // 10. There is / There are
+        {
+            title: '🏠 There is / There are',
+            rule: 'There is — один предмет.<br>There are — несколько.<br>Отрицание: isn’t / aren’t.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: '____ one girl in the family.',
+                    options: ['There is', 'There are'],
+                    correct: 'There is',
+                    feedback: 'Одна → There is 👧'
+                },
+                {
+                    type: 'choose',
+                    question: '____ three apples on the table.',
+                    options: ['There is', 'There are'],
+                    correct: 'There are',
+                    feedback: 'Три → There are 🍎'
+                }
+            ]
+        },
+
+        // 11. can / can’t
+        {
+            title: '💪 can / can’t',
+            rule: 'can — умею, могу.<br>После can глагол без to и без -s.<br>She can dance.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: 'She ____ play the piano.',
+                    options: ['can', 'cans'],
+                    correct: 'can',
+                    feedback: 'can + глагол без -s 🎹'
+                },
+                {
+                    type: 'choose',
+                    question: '____ you swim?',
+                    options: ['Can', 'Do'],
+                    correct: 'Can',
+                    feedback: 'Вопрос с can: Can you swim? 🏊'
+                }
+            ]
+        },
+
+        // 12. Do / Does
+        {
+            title: '❓ Do / Does questions',
+            rule: 'Do — I, you, we, they<br>Does — he, she, it<br>Ответ: Yes, I do. / No, she doesn’t.',
+            exercises: [
+                {
+                    type: 'choose',
+                    question: '____ children like skating?',
+                    options: ['Do', 'Does'],
+                    correct: 'Do',
+                    feedback: 'children = they → Do ⛸️'
+                },
+                {
+                    type: 'choose',
+                    question: '____ she like ice cream?',
+                    options: ['Do', 'Does'],
+                    correct: 'Does',
+                    feedback: 'she → Does 🍦'
+                },
+                {
+                    type: 'choose',
+                    question: '____ your dog eat meat?',
+                    options: ['Do', 'Does'],
+                    correct: 'Does',
+                    feedback: 'your dog = it → Does 🐶'
+                }
+            ]
+        }
+    ];
+
+    // --------------------------------------------------------------
+    //  СОСТОЯНИЕ
+    // --------------------------------------------------------------
+    let currentTopicIndex = 0;
+    let totalCorrect = 0;
+    let totalAnswered = 0;
+    let topicStats = {}; // { topicIndex: { answered, correct } }
+
+    const container = document.getElementById('topicsContainer');
+    const progressDisplay = document.getElementById('progressDisplay');
+
+    // --------------------------------------------------------------
+    //  РЕНДЕР
+    // --------------------------------------------------------------
+    function renderTopic(index) {
+        if (index >= topics.length) {
+            const totalExercises = topics.reduce((sum, t) => sum + t.exercises.length, 0);
+            const percent = totalExercises ? Math.round(totalCorrect / totalExercises * 100) : 0;
+            const mood =
+                percent >= 80 ? '🌟 Отлично! Ты готов к 4 классу!' :
+                percent >= 50 ? '👍 Хорошо! Немного повтори правила и попробуй снова.' :
+                                '💪 Не сдавайся! Повтори правила и пройди ещё раз.';
+            container.innerHTML = `
+                <div class="congrats">
+                    🎉✨ Ты прошёл все задания!<br><br>
+                    Правильно: <strong>${totalCorrect}</strong> из <strong>${totalExercises}</strong> (${percent}%)<br><br>
+                    ${mood}
+                </div>
+            `;
+            progressDisplay.textContent = '🏆 Complete!';
+            return;
+        }
+
+        const topic = topics[index];
+        let html = `<div class="topic-card">`;
+        html += `<div class="topic-title">${topic.title}</div>`;
+        html += `<div class="rule-box">${topic.rule}</div>`;
+
+        topic.exercises.forEach((ex, exIdx) => {
+            const exId = `ex-${index}-${exIdx}`;
+            html += `<div class="exercise" id="${exId}">`;
+            html += `<div class="exercise-title">✏️ Exercise ${exIdx + 1}</div>`;
+            html += `<p>${ex.question}</p>`;
+
+            if (ex.type === 'choose') {
+                html += `<div class="options" data-exid="${exId}">`;
+                ex.options.forEach(opt => {
+                    html += `<button class="opt-btn" data-answer="${opt}" onclick="checkChoose(this, '${ex.correct}', '${ex.feedback}', '${exId}')">${opt}</button>`;
+                });
+                html += `</div>`;
+                html += `<div id="fb-${exId}" class="feedback-text" style="display:none;"></div>`;
+            } else if (ex.type === 'fill') {
+                html += `<div class="flex-row">`;
+                html += `<input class="fill-input" id="input-${exId}" placeholder="type answer..." />`;
+                html += `<button class="btn-check" onclick="checkFill('${exId}', '${ex.correct}', '${ex.feedback}')">Check ✅</button>`;
+                html += `</div>`;
+                html += `<div id="fb-${exId}" class="feedback-text" style="display:none;"></div>`;
+            }
+
+            html += `</div>`;
+        });
+
+        html += `<div style="text-align:right; margin-top:20px;">
+                    <button class="btn-check" id="nextBtn" style="background:#b3c9bb; box-shadow:0 6px 0 #7d9b8b;" onclick="nextTopic()" disabled>Next →</button>
+                 </div>`;
+        html += `</div>`;
+
+        container.innerHTML = html;
+        progressDisplay.textContent = `🌟 ${index + 1} / ${topics.length}`;
+        updateNextButtonState();
+
+        setTimeout(() => {
+            const firstInput = container.querySelector('.fill-input');
+            if (firstInput) firstInput.focus();
+        }, 100);
+    }
+
+    // --------------------------------------------------------------
+    //  ПРОВЕРКА ОТВЕТОВ
+    // --------------------------------------------------------------
+    function checkChoose(btn, correct, feedbackText, exId) {
+        const parentOptions = btn.closest('.options');
+        const allBtns = parentOptions.querySelectorAll('.opt-btn');
+        allBtns.forEach(b => b.disabled = true);
+
+        const isCorrect = btn.dataset.answer === correct;
+        if (isCorrect) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            allBtns.forEach(b => {
+                if (b.dataset.answer === correct) b.classList.add('correct');
+            });
+        }
+
+        const fb = document.getElementById(`fb-${exId}`);
+        fb.textContent = (isCorrect ? '✅ ' : '❌ ') + feedbackText;
+        fb.className = `feedback-text ${isCorrect ? 'fb-correct' : 'fb-wrong'}`;
+        fb.style.display = 'inline-block';
+
+        registerAnswer(isCorrect);
+    }
+
+    function checkFill(exId, correctAnswer, feedbackText) {
+        const input = document.getElementById(`input-${exId}`);
+        const fb = document.getElementById(`fb-${exId}`);
+        if (!input) return;
+
+        const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+        const isCorrect = userAnswer === correctAnswer.toLowerCase();
+
+        if (isCorrect) {
+            fb.textContent = '✅ ' + feedbackText;
+            fb.className = 'feedback-text fb-correct';
+            input.style.borderColor = '#3c8d5e';
+        } else {
+            fb.textContent = `❌ Правильно: "${correctAnswer}". ${feedbackText}`;
+            fb.className = 'feedback-text fb-wrong';
+            input.style.borderColor = '#b34a4a';
+        }
+        fb.style.display = 'inline-block';
+        input.disabled = true;
+        const btn = input.closest('.flex-row').querySelector('.btn-check');
+        if (btn) btn.disabled = true;
+
+        registerAnswer(isCorrect);
+    }
+
+    // --------------------------------------------------------------
+    //  УЧЁТ ОТВЕТОВ И БЛОКИРОВКА NEXT
+    // --------------------------------------------------------------
+    function registerAnswer(isCorrect) {
+        const idx = currentTopicIndex;
+        if (!topicStats[idx]) topicStats[idx] = { answered: 0, correct: 0 };
+        topicStats[idx].answered++;
+        if (isCorrect) {
+            topicStats[idx].correct++;
+            totalCorrect++;
+        }
+        totalAnswered++;
+        updateNextButtonState();
+    }
+
+    function updateNextButtonState() {
+        const btn = document.getElementById('nextBtn');
+        if (!btn) return;
+        const total = topics[currentTopicIndex].exercises.length;
+        const stats = topicStats[currentTopicIndex] || { answered: 0 };
+        if (stats.answered >= total) {
+            btn.disabled = false;
+            btn.textContent = 'Next → ✅';
+        } else {
+            btn.disabled = true;
+            btn.textContent = `Next → (${stats.answered}/${total})`;
+        }
+    }
+
+    // --------------------------------------------------------------
+    //  НАВИГАЦИЯ
+    // --------------------------------------------------------------
+    function nextTopic() {
+        const total = topics[currentTopicIndex].exercises.length;
+        const stats = topicStats[currentTopicIndex] || { answered: 0 };
+        if (stats.answered < total) {
+            alert('Сначала выполни все задания этой темы!');
+            return;
+        }
+        currentTopicIndex++;
+        renderTopic(currentTopicIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartAll() {
+        currentTopicIndex = 0;
+        totalCorrect = 0;
+        totalAnswered = 0;
+        topicStats = {};
+        renderTopic(0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --------------------------------------------------------------
+    //  СТАРТ
+    // --------------------------------------------------------------
+    renderTopic(0);
+</script>
+
+</body>
+</html>
