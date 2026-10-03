@@ -272,7 +272,7 @@
                     question: '____ happy elephant',
                     options: ['a', 'an'],
                     correct: 'a',
-                    feedback: 'a happy elephant — "happy" начинается с согласного 🐘'
+                    feedback: 'a happy elephant — «happy» начинается с согласного 🐘'
                 },
                 {
                     type: 'choose',
@@ -614,7 +614,7 @@
             if (ex.type === 'choose') {
                 html += `<div class="options" data-exid="${exId}">`;
                 ex.options.forEach(opt => {
-                    // Передаем только exId. Все данные (ответ, подсказка) берутся из массива topics при клике.
+                    // Передаем ТОЛЬКО exId. Все данные берутся из массива topics при клике.
                     html += `<button class="opt-btn" data-answer="${opt}" onclick="checkChoose(this, '${exId}')">${opt}</button>`;
                 });
                 html += `</div>`;
